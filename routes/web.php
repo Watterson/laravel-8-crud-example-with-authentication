@@ -13,11 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/{any}', function () {
+//     return view('layouts.vue');
+// })->where('any', '.*');
+
+//Route::get('/', 'HomeController@index')->name('home.index');
+
+//
+
 Route::group(['namespace' => 'App\Http\Controllers'], function()
-{   
+{
     /**
      * Home Routes
      */
+
+
     Route::get('/', 'HomeController@index')->name('home.index');
 
     Route::group(['middleware' => ['guest']], function() {
@@ -30,12 +40,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Login Routes
          */
-        Route::get('/login', 'LoginController@show')->name('login.show');
+        Route::get('/login', 'LoginController@show')->name('login');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
     });
 
     Route::group(['middleware' => ['auth']], function() {
+      Route::group(['prefix' => 'dashboard'], function() {
+
+       Route::get('/', 'DashboardController@index')->name('dashboard.index');
         /**
          * Logout Routes
          */
@@ -53,6 +66,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
             Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
         });
-        
+      });
     });
 });

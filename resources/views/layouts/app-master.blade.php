@@ -31,7 +31,7 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
 </head>
@@ -44,6 +44,6 @@
     </main>
 
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
-      
+
   </body>
 </html>
